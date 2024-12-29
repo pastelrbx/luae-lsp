@@ -163,6 +163,7 @@ int main(int argc, char** argv)
 
     // Analyze arguments
     argparse::ArgumentParser analyze_command("analyze");
+    analyze_command.set_assign_chars(":=");
     analyze_command.add_description("Run luau-analyze type checking and linting");
     analyze_command.add_parents(parent_parser);
     analyze_command.add_argument("--annotate")
@@ -189,7 +190,7 @@ int main(int argc, char** argv)
         .help("A path to a Luau definitions file to load into the global namespace")
         .default_value<std::vector<std::string>>({})
         .append()
-        .metavar("PATH");
+        .metavar("@NAME=PATH");
     analyze_command.add_argument("--ignore")
         .help("file glob pattern for ignoring error outputs")
         .default_value<std::vector<std::string>>({})
@@ -205,6 +206,7 @@ int main(int argc, char** argv)
 
     // Language server arguments
     argparse::ArgumentParser lsp_command("lsp");
+    lsp_command.set_assign_chars(":=");
     lsp_command.add_description("Start the language server");
     lsp_command.add_epilog("This will start up a server which listens to LSP messages on stdin, and responds on stdout");
     lsp_command.add_parents(parent_parser);
@@ -212,7 +214,7 @@ int main(int argc, char** argv)
         .help("path to a Luau definitions file to load into the global namespace")
         .default_value<std::vector<std::string>>({})
         .append()
-        .metavar("PATH");
+        .metavar("@NAME=PATH");
     lsp_command.add_argument("--docs", "--documentation")
         .help("path to a Luau documentation database for loaded definitions")
         .action(file_path_parser)
