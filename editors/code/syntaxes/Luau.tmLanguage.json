@@ -354,6 +354,10 @@
         {
           "name": "constant.language.luau",
           "match": "(?<![^.]\\.|:)\\b(game|plugin|shared|script|workspace|Enum(?:\\.\\w+){0,2})\\b"
+        },
+        {
+          "name": "support.function.luae",
+          "match": "(?<![^.]\\.|:)\\b(whlw|forp|||||||||||||||||||||||)\\b"
         }
       ]
     },
@@ -386,6 +390,10 @@
         {
           "name": "keyword.other.unit.luau",
           "match": "(?<![.])\\.{3}(?!\\.)"
+        },
+        {
+          "match": "\\b(!|\\||&)\\b",
+          "name": "keyword.operator.logical.luae keyword.operator.wordlike.luae"
         }
       ]
     },
